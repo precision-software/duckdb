@@ -16,6 +16,7 @@ static Oid convertDecimalType(char *name, int width, int scale);
 
 /*
  * Convert a DuckDb type to a Postgres type.
+ * Creates and reuses anonymous Postgres types as needed.
  */
 Oid convertDuckType(char *name, duckdb_logical_type type) {
 
@@ -160,7 +161,7 @@ Oid convertDuckType(char *name, duckdb_logical_type type) {
 /*
  * Get the text name of a DuckDb type.
  */
-static const char* typeName(duckdb_type typeid)
+const char* typeName(duckdb_type typeid)
 {
 	static const char *typeNames [] = {
 		"INVALID",  /* 0 */
